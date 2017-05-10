@@ -4,7 +4,7 @@ import com.kybernetikos.jbuzztree.data.Node;
 
 import java.util.WeakHashMap;
 
-public class MemoryApi<Key, Value> implements Api<Key, Value, Integer> {
+public class MemoryStorage<Key, Value> implements Storage<Key, Value, Integer> {
     private int nextId = 0;
     private final WeakHashMap<Integer, Node<Key, Value, Integer>> cache = new WeakHashMap<>();
 

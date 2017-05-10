@@ -1,30 +1,45 @@
 package com.kybernetikos.jbuzztree;
 
-import com.kybernetikos.jbuzztree.apis.Api;
-import com.kybernetikos.jbuzztree.apis.MemoryApi;
-import com.kybernetikos.jbuzztree.apis.SerializingApi;
+import com.kybernetikos.jbuzztree.apis.Storage;
+import com.kybernetikos.jbuzztree.apis.SerializingStorage;
 
 import java.util.Comparator;
 
 public class Main {
 
     public static void main(String[] args) {
-        Api<String, String, Integer> api = new SerializingApi<>();
-        Tree<String, String, Integer> storedTree = new Tree<>(null, Comparator.naturalOrder(), api, 3);
+        Storage<String, String, Integer> storage = new SerializingStorage<>();
+        Tree<String, String, Integer> tree = new Tree<>(null, Comparator.naturalOrder(), storage, 3);
 
-        storedTree.put("hello", "world");
-        storedTree.put("boom", "boom");
-        storedTree.put("shake", "room");
-        storedTree.put("hello", "everyone");
-        storedTree.put("eye", "sight");
-        storedTree.put("nose", "smell");
+        tree.put("hello", "world");
+        tree.put("a", "b");
+        tree.put("c", "d");
+        tree.put("e", "f");
+        tree.put("bob", "fred");
+        tree.put("cat", "dog");
+        tree.put("b", "x");
+        tree.put("d", "y");
 
-        Tree<String, String, Integer> tree = new Tree<>(storedTree.getRef(), Comparator.naturalOrder(), api, 3);
+        tree.remove("c");
+        tree.remove("cat");
+        tree.remove("dog");
+        tree.remove("d");
+        tree.remove("e");
+        tree.remove("a");
+        tree.remove("bob");
+        tree.remove("b");
+        tree.remove("hello");
 
-        System.out.println(tree.get("hello", null));
-        System.out.println(tree.get("jim", null));
-        System.out.println(tree.get("shake", null));
-        System.out.println(tree.get("nose", null));
-        System.out.println(tree.get("fred", "not-here"));
+        tree.put("hello", "world");
+        tree.put("a", "b");
+        tree.put("c", "d");
+        tree.put("e", "f");
+        tree.put("bob", "fred");
+        tree.put("cat", "dog");
+        tree.put("b", "x");
+        tree.put("d", "y");
+
+        System.out.println("\n\n\n");
+        System.out.println(tree.toString());
     }
 }
